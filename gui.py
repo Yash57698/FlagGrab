@@ -6,6 +6,7 @@ screen = pygame.display.set_mode((1000,500))
 pygame.display.set_caption('FlagGrab')
 clock = pygame.time.Clock()
 
+PlayerRadius = 10
 lines = []
 circles = []
 boundaries = [((100,50),(900,50)) , ((100,50),(100,450)) , ((100,450),(900,450)) , ((900,50),(900,450))]
@@ -35,6 +36,9 @@ def draw_lines(lines):
 def draw_circles(circles):
     for i in range(len(circles)):
         pygame.draw.circle(screen,"black",circles[i][0],circles[i][1],2)
+
+def draw_players(player):
+    pygame.draw.circle(screen,"black",player.pos,PlayerRadius,2)
 
 # while True:
 #     for event in pygame.event.get():

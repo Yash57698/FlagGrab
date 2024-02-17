@@ -2,6 +2,8 @@ from Player import Player
 from Map import Map
 import pygame
 import gui
+import time
+import PhysicsHandler
 
 class GameHandler:
     map = None
@@ -13,25 +15,41 @@ class GameHandler:
         self.map = map
         self.Players = players
         pygame.init()
-        screen = pygame.display.set_mode((1000,500))
+        self.screen = pygame.display.set_mode((1000,500))
         pygame.display.set_caption('FlagGrab')
-        clock = pygame.time.Clock()
+        self.clock = pygame.time.Clock()
 
     def draw(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+        self.screen.fill("white")
+        
+        for player in self.Players:
+            gui.draw_players(player)
+
+        gui.draw_boundaries(self.map.get_boundaries())
+        pygame.display.update()
+
+        
+
+    def StartGame(self):
         while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    exit()
-            self.screen.fill("white")
+            self.draw()
+
+
+            for player in self.Players:
+                PhysicsHandler.tickPlayer(player)
             
-            gui.draw_circles()
-            gui.draw_boundaries(map.get_boundaries())
-            pygame.display.update()
-            self.clock.tick(60)
+            PhysicsHandler.HandleCollsion(self.map,self.Players)
+            time.sleep(0.02)
+            # self.clock.tick(60)
 
 m = Map()
-ps = [Player(0,0)]
+ps = [Player((200,200),(10,0))]
 
 handler = GameHandler(m ,ps)
+handler.draw()
 
+handler.StartGame()
