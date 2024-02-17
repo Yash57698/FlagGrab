@@ -2,13 +2,13 @@ import pygame
 from sys import exit
 
 pygame.init()
-screen = pygame.display.set_mode((800,400))
+screen = pygame.display.set_mode((1000,500))
 pygame.display.set_caption('FlagGrab')
 clock = pygame.time.Clock()
 
 lines = []
 circles = []
-boundaries = []
+boundaries = [((100,50),(900,50)) , ((100,50),(100,450)) , ((100,450),(900,450)) , ((900,50),(900,450))]
 
 def parse_input(input_string):
     tuples_list = []
@@ -20,9 +20,10 @@ def parse_input(input_string):
         tuples_list.append(pair)
     return tuples_list
 
-lines = parse_input(lines) 
-circles = parse_input(circles) 
-boundaries = parse_input(boundaries) 
+# lines = parse_input(lines) 
+# circles = parse_input(circles) 
+# boundaries = parse_input(boundaries) 
+
 def draw_boundaries(boundaries):
         for i in range(len(boundaries)):
             pygame.draw.line(screen,"Red",boundaries[i][0],boundaries[i][1],10)
@@ -35,14 +36,14 @@ def draw_circles(circles):
     for i in range(len(circles)):
         pygame.draw.circle(screen,"black",circles[i][0],circles[i][1],2)
 
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            exit()
-    screen.fill("white")
-    draw_lines(lines)
-    draw_circles(circles)
-    draw_boundaries(boundaries)
-    pygame.display.update()
-    clock.tick(60)
+# while True:
+#     for event in pygame.event.get():
+#         if event.type == pygame.QUIT:
+#             pygame.quit()
+#             exit()
+#     screen.fill("white")
+#     draw_lines(lines)
+#     draw_circles(circles)
+#     draw_boundaries(boundaries)
+#     pygame.display.update()
+#     clock.tick(60)
