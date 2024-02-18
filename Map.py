@@ -5,6 +5,9 @@ class Map:
     def get_boundaries(self):
         return self.boundaries
     
+    def get_walls(self):
+        return self.boundaries
+
     def get_obstacles(self):
         return self.obstacles
     

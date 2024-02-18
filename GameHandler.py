@@ -37,17 +37,13 @@ class GameHandler:
     def StartGame(self):
         while True:
             self.draw()
-
-
-            for player in self.Players:
-                PhysicsHandler.tickPlayer(player)
-            
+            PhysicsHandler.tickPlayers(self.map,self.Players)
             PhysicsHandler.HandleCollsion(self.map,self.Players)
             time.sleep(0.02)
             # self.clock.tick(60)
 
 m = Map()
-ps = [Player((200,200),(10,0))]
+ps = [Player((200,200),(10,0)) , Player((500,200),(-10,0))]
 
 handler = GameHandler(m ,ps)
 handler.draw()
