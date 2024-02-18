@@ -9,7 +9,7 @@ clock = pygame.time.Clock()
 
 lines = []
 circles = []
-boundaries = []
+boundaries = [((100,50),(900,50)) , ((100,50),(100,450)) , ((100,450),(900,450)) , ((900,50),(900,450))]
 
 # def parse_input(input_string):
 #     tuples_list = []
@@ -21,11 +21,9 @@ boundaries = []
 #         tuples_list.append(pair)
 #     return tuples_list
 
-# lines = parse_input(lines) 
-# circles = parse_input(circles) 
-# boundaries = parse_input(boundaries) 
-
-
+lines = parse_input(lines) 
+circles = parse_input(circles) 
+boundaries = parse_input(boundaries) 
 def draw_boundaries(boundaries):
         for i in range(len(boundaries)):
             pygame.draw.line(screen,"Red",boundaries[i][0],boundaries[i][1],10)
@@ -37,11 +35,6 @@ def draw_lines(lines):
 def draw_circles(circles):
     for i in range(len(circles)):
         pygame.draw.circle(screen,"black",circles[i][0],circles[i][1],2)
-
-def draw(boundaries,obstacles,players):
-    draw_boundaries(boundaries)
-    draw_lines(obstacles)
-    draw_circles(players)
 
 while True:
     for event in pygame.event.get():
