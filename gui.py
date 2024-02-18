@@ -1,6 +1,6 @@
 import pygame
 from sys import exit
-import Map
+# import Map
 
 pygame.init()
 screen = pygame.display.set_mode((1000,500))
@@ -21,9 +21,9 @@ boundaries = [((100,50),(900,50)) , ((100,50),(100,450)) , ((100,450),(900,450))
 #         tuples_list.append(pair)
 #     return tuples_list
 
-lines = parse_input(lines) 
-circles = parse_input(circles) 
-boundaries = parse_input(boundaries) 
+# lines = parse_input(lines) 
+# circles = parse_input(circles) 
+# boundaries = parse_input(boundaries) 
 def draw_boundaries(boundaries):
         for i in range(len(boundaries)):
             pygame.draw.line(screen,"Red",boundaries[i][0],boundaries[i][1],10)
